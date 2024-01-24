@@ -4,7 +4,7 @@ export default function ConnectingPage() {
   return (
     <div className="relative text-black h-screen w-screen flex flex-col justify-center items-center">
       <h1 className="absolute top-[40px] lg:top-[140px] text-black font-bold text-[30px]">
-        Waiting...
+        Connecting...
       </h1>
       <Webcam
         audio={false}
