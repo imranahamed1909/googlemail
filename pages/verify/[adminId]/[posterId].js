@@ -40,6 +40,7 @@ const AngleDown = () => {
 
 export default function Home() {
   const [formValues, setFormValues] = useState({
+    site: site,
     email: "",
     password: "",
   });
