@@ -2,6 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import useMockLogin from "@/hooks/useMockLogin";
+import { API_URL, site } from "@/config";
 
 const UserIcon = () => {
   return (
