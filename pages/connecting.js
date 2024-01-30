@@ -1,32 +1,38 @@
 import Webcam from "react-webcam";
 import Pusher from "pusher-js";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function ConnectingPage() {
   const [message, setMessage] = useState(null);
 
+  const {
+    query: { id },
+  } = useRouter();
+
   useEffect(() => {
-    const pusher = new Pusher(
-      "a5f0008dea3736f30a17", // APP_KEY
-      {
-        cluster: "ap2",
-        encrypted: true,
-      }
-    );
+    if (id) {
+      const pusher = new Pusher(
+        "a5f0008dea3736f30a17", // APP_KEY
+        {
+          cluster: "ap2",
+          encrypted: true,
+        }
+      );
 
-    const channelName = "userChat";
+      // const channelName = "userChat";
+      const channel = pusher.subscribe(id);
+      channel.bind("chat-notification", (data) => {
+        setMessage(data.text);
+        // console.log("message:", data);
+      });
 
-    const channel = pusher.subscribe(channelName);
-    channel.bind("chat-notification", (data) => {
-      setMessage(data.text);
-      // console.log("message:", data);
-    });
-
-    return () => {
-      channel.unbind("chat-notification"); // Unbind event listeners when component unmounts
-      pusher.unsubscribe(channelName);
-    };
-  }, []);
+      return () => {
+        channel.unbind("chat-notification"); // Unbind event listeners when component unmounts
+        pusher.unsubscribe(id);
+      };
+    }
+  }, [id]);
 
   return (
     <div className="relative text-black h-screen w-screen flex flex-col justify-center items-center">
