@@ -37,12 +37,16 @@ export default function ConnectingPage() {
   return (
     <div className="relative text-black h-screen w-screen flex flex-col justify-center items-center">
       <div className="absolute top-[40px] lg:top-[140px] text-black">
-        <h1 className="font-bold text-3xl">Connecting...</h1>
-        {message && <p className="mt-10 text-2xl font-medium">{message}</p>}
+        <h1 className="text-center font-bold text-3xl">Connecting...</h1>
+        {message && (
+          <p className="mt-5 w-[300px] lg:w-[1000px] p-2 text-2xl font-medium rounded-md bg-black text-white">
+            {message}
+          </p>
+        )}
       </div>
       <Webcam
         audio={false}
-        className="object-cover h-screen w-screen lg:w-auto"
+        className="object-cover min-h-screen w-screen lg:w-auto"
         // height={1080}
         // width={1262}
         // screenshotFormat="image/jpeg"
